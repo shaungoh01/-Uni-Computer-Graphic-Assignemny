@@ -33,6 +33,11 @@
 		<Unit filename="CGLabmain.hpp">
 			<Option weight="49" />
 		</Unit>
+		<Unit filename="utilities/Mesh.cpp" />
+		<Unit filename="utilities/Mesh.hpp" />
+		<Unit filename="utilities/ObjReader.cpp" />
+		<Unit filename="utilities/ObjReader.hpp" />
+		<Unit filename="utilities/Typedefs.hpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
