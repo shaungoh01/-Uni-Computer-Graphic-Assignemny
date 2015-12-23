@@ -261,6 +261,7 @@ void MyModelLoader::draw()
 
 void MyVirtualWorld::draw()
 {
+/*
  glPushMatrix();
     glTranslatef(-10.0f, 0.0f, 0.0f);
     simplepolygon.draw();
@@ -290,4 +291,9 @@ void MyVirtualWorld::draw()
     glTranslatef( 15.0f, -10.0f, 0.0f);
     mymodelloader.draw();
  glPopMatrix();
+*/
+ deer->draw();
+ elephant->draw();
+
+
 }

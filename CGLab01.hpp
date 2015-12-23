@@ -35,6 +35,7 @@
 #define YP_CGLAB01_HPP
 
 #include "CGLabmain.hpp"
+#include "utilities/Mesh.hpp"
 #include <string>
 #include <vector>
 
@@ -105,10 +106,17 @@ class MyVirtualWorld
     SimpleTeapot       simpleteapot;
     SimpleBouncingBall simplebouncingball;
     MyModelLoader      mymodelloader;
+    Mesh *deer;
+    Mesh *elephant;
 
     long int timeold, timenew, elapseTime;
 
     void draw();
+
+    ~MyVirtualWorld() {
+        delete deer;
+        delete elephant;
+    }
 
     void tickTime()
     {
@@ -129,6 +137,16 @@ class MyVirtualWorld
 
      //Low-polygons dragon (5835 triangles)
      mymodelloader.load("data/model_lowpolygonstanforddragon.txt",100);
+     deer = new Mesh("data/deer.obj");
+     deer->setFlatColor({{.8, .2, .8}});
+     deer->setTranslateX(10.5f);
+     deer->setScale(0.5f);
+
+     elephant = new Mesh("data/elephant-triangulated.obj");
+     elephant->setFlatColor({{ .8, .1, .15 }});
+     elephant->setTranslateX(-10.5f);
+     elephant->setRotateY(-45.0f);
+
 
      //Try this:
      //High-polygons dragon (original model of Stanford Dragon)
