@@ -12,6 +12,9 @@
 				<Option compiler="gcc" />
 				<Option use_console_runner="0" />
 				<Option projectResourceIncludeDirsRelation="1" />
+				<Compiler>
+					<Add directory="include" />
+				</Compiler>
 			</Target>
 		</Build>
 		<VirtualTargets>
@@ -37,6 +40,8 @@
 		<Unit filename="utilities/Mesh.hpp" />
 		<Unit filename="utilities/ObjReader.cpp" />
 		<Unit filename="utilities/ObjReader.hpp" />
+		<Unit filename="utilities/Transformable.cpp" />
+		<Unit filename="utilities/Transformable.hpp" />
 		<Unit filename="utilities/Typedefs.hpp" />
 		<Extensions>
 			<code_completion />
