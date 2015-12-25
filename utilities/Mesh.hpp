@@ -1,13 +1,14 @@
 #pragma once
 
 #include "Typedefs.hpp"
+#include "Transformable.hpp"
 #include <vector>
 #include <string>
 #include <GL/gl.h>
 
 using std::vector;
 
-class Mesh
+class Mesh : public Transformable
 {
 public:
     Mesh();
@@ -29,26 +30,6 @@ public:
 
     bool hasUv() const;
 
-    // transformations:
-    GLfloat getScale() const;
-    GLfloat getRotateX() const;
-    GLfloat getRotateY() const;
-    GLfloat getRotateZ() const;
-    GLfloat getTranslateX() const;
-    GLfloat getTranslateY() const;
-    GLfloat getTranslateZ() const;
-
-    void setScale(const GLfloat &value);
-    void setRotateX(const GLfloat &value);
-    void setRotateY(const GLfloat &value);
-    void setRotateZ(const GLfloat &value);
-    void setTranslate(const vec3 &t);
-    void setTranslateX(const GLfloat &value);
-    void setTranslateY(const GLfloat &value);
-    void setTranslateZ(const GLfloat &value);
-
-    void resetTransformations();
-
     bool getVisibility() const;
     void setVisibility(bool value);
 
@@ -69,15 +50,5 @@ private:
     std::string name;
 
     vec3 flat_color;
-
-    GLfloat rotateX;
-    GLfloat rotateY;
-    GLfloat rotateZ;
-
-    GLfloat translateX;
-    GLfloat translateY;
-    GLfloat translateZ;
-
-    GLfloat scale;
 };
 
