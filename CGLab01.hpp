@@ -36,6 +36,7 @@
 
 #include "CGLabmain.hpp"
 #include "utilities/Mesh.hpp"
+#include "utilities/Extrusion.hpp"
 #include <string>
 #include <vector>
 
@@ -108,6 +109,9 @@ class MyVirtualWorld
     MyModelLoader      mymodelloader;
     Mesh *deer;
     Mesh *elephant;
+    vector<vec2> points;
+    Extrusion *extrude;
+
 
     long int timeold, timenew, elapseTime;
 
@@ -116,6 +120,7 @@ class MyVirtualWorld
     ~MyVirtualWorld() {
         delete deer;
         delete elephant;
+        delete extrude;
     }
 
     void tickTime()
@@ -134,6 +139,15 @@ class MyVirtualWorld
     void init()
     {
      glEnable(GL_LIGHTING);
+
+     points = {
+        {{ -4.0f, -5.0f }}, {{ -4.0f,  5.0f }},
+        {{  0.0f,  7.0f }}, {{  4.0f,  5.0f }},
+        {{  4.0f, -5.0f }}, {{  0.0f, -7.0f }}
+     };
+
+     extrude = new Extrusion(points);
+     extrude->setDepth(8);
 
      //Low-polygons dragon (5835 triangles)
      mymodelloader.load("data/model_lowpolygonstanforddragon.txt",100);

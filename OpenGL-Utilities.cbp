@@ -22,6 +22,7 @@
 		</VirtualTargets>
 		<Compiler>
 			<Add option="-std=c++11" />
+			<Add option="-g" />
 			<Add directory="dependencies/glut/include" />
 		</Compiler>
 		<Linker>
@@ -36,6 +37,8 @@
 		<Unit filename="CGLabmain.hpp">
 			<Option weight="49" />
 		</Unit>
+		<Unit filename="utilities/Extrusion.cpp" />
+		<Unit filename="utilities/Extrusion.hpp" />
 		<Unit filename="utilities/Mesh.cpp" />
 		<Unit filename="utilities/Mesh.hpp" />
 		<Unit filename="utilities/ObjReader.cpp" />

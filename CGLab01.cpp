@@ -20,6 +20,7 @@
 #include <GL/glut.h>
 #include <string>
 #include <fstream>
+#include "utilities/Typedefs.hpp"
 #include "CGLab01.hpp"
 
 using namespace CGLab01;
@@ -292,8 +293,9 @@ void MyVirtualWorld::draw()
     mymodelloader.draw();
  glPopMatrix();
 */
- deer->draw();
- elephant->draw();
+// deer->draw();
+// elephant->draw();
 
 
+extrude->draw();
 }
