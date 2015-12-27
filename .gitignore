@@ -24,3 +24,7 @@
 *.app
 *.layout
 *.depend
+
+# Mac OS X stuff
+.DS_Store
+dependencies/.DS_Store

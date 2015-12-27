@@ -1,6 +1,10 @@
 #include "Extrusion.hpp"
-#include <GL/gl.h>
 
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#else
+#include <GL/gl.h>
+#endif
 Extrusion::Extrusion(std::vector<vec2> &points2d, int depth) :
     points2d(points2d), depth(depth)
 {
