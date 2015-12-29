@@ -46,7 +46,8 @@
 		<Unit filename="utilities/ObjReader.hpp" />
 		<Unit filename="utilities/Transformable.cpp" />
 		<Unit filename="utilities/Transformable.hpp" />
-		<Unit filename="utilities/Typedefs.hpp" />
+		<Unit filename="utilities/VecMatMath.cpp" />
+		<Unit filename="utilities/VecMatMath.hpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
