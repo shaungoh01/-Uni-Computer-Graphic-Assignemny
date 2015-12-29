@@ -22,7 +22,7 @@ Here is a short list of features a real function would provide :
 
 #pragma once
 
-#include "Typedefs.hpp"
+#include "VecMatMath.hpp"
 #include <vector>
 
 using std::vector;

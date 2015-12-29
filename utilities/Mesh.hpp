@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Typedefs.hpp"
+#include "VecMatMath.hpp"
 #include "Transformable.hpp"
 #include <vector>
 #include <string>

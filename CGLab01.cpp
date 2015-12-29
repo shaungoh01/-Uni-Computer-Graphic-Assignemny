@@ -24,7 +24,7 @@
 #endif
 #include <string>
 #include <fstream>
-#include "utilities/Typedefs.hpp"
+#include "utilities/VecMatMath.hpp"
 #include "CGLab01.hpp"
 
 using namespace CGLab01;

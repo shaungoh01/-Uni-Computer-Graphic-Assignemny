@@ -7,7 +7,7 @@
 #include <GL/gl.h>
 #endif
 
-#include "Typedefs.hpp"
+#include "VecMatMath.hpp"
 
 class Transformable
 {

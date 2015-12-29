@@ -1,5 +1,5 @@
 #include "ObjReader.hpp"
-#include "Typedefs.hpp"
+#include "VecMatMath.hpp"
 #include <stdio.h>
 #include <map>
 #include <cstring>
