@@ -30,19 +30,19 @@ mat3 getRotationMatrix(vec3 axis, float rads)
 
     return {{
         {{
-            cos(rads) + (axis[0] * axis[0]) * (1.0 - cos(rads)),
-            (axis[1] * axis[0]) * (1.0 - cos(rads)) + axis[2] * sin(rads),
-            (axis[2] * axis[0]) * (1.0 - cos(rads)) - axis[1] * sin(rads)
+            cos(rads) + (axis[0] * axis[0]) * (1 - cos(rads)),
+            (axis[1] * axis[0]) * (1 - cos(rads)) + axis[2] * sin(rads),
+            (axis[2] * axis[0]) * (1 - cos(rads)) - axis[1] * sin(rads)
         }},
         {{
-            (axis[0] * axis[1]) * (1.0 - cos(rads)) - axis[2] * sin(rads),
+            (axis[0] * axis[1]) * (1 - cos(rads)) - axis[2] * sin(rads),
             cos(rads) + (axis[1] * axis[1]) * (1 - cos(rads)),
-            (axis[2] * axis[1]) * (1.0 - cos(rads)) + axis[0] * sin(rads)
+            (axis[2] * axis[1]) * (1 - cos(rads)) + axis[0] * sin(rads)
         }},
         {{
-            (axis[0] * axis[2]) * (1.0 - cos(rads)) + axis[1] * sin(rads),
-            (axis[1] * axis[2]) * (1.0 - cos(rads)) - axis[0] * sin(rads),
-            cos(rads) + (axis[2] * axis[2]) * (1.0 - cos(rads))
+            (axis[0] * axis[2]) * (1 - cos(rads)) + axis[1] * sin(rads),
+            (axis[1] * axis[2]) * (1 - cos(rads)) - axis[0] * sin(rads),
+            cos(rads) + (axis[2] * axis[2]) * (1 - cos(rads))
         }}
     }};
 }
