@@ -19,9 +19,20 @@ int main()
     assert(found3 == expected3);
 
     found3 = unitVec(expected3);
-    int m = magnitude(found3);
+    int mag = magnitude(found3);
 
-    assert(m == 1);
+    assert(mag == 1);
+
+    vec3 a = {{ 2, 1, 3 }};
+    mat3 m = {{
+         {{ 1, 4, 7 }},
+         {{ 2, 5, 8 }},
+         {{ 3, 6, 9 }}
+    }};
+    found3 = mult(m, a);
+    expected3 = {{ 13, 31, 49 }};
+
+    assert(found3 == expected3);
     return 0;
 
 }

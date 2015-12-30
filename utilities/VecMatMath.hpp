@@ -8,8 +8,10 @@
 
 typedef std::array<float, 3> vec3;
 typedef std::array<float, 2> vec2;
+typedef std::array<vec3, 3> mat3;
 
 vec3 cross(const vec3 &a, const vec3 &b);
+vec3 mult(const mat3& m, const vec3& a);
 
 template<typename T>
 float dot(const T &a, const T &b)
