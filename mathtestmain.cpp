@@ -2,6 +2,7 @@
 #include <cassert>
 #include "utilities/VecMatMath.hpp"
 
+using namespace std;
 
 int main()
 {
@@ -41,6 +42,38 @@ int main()
     expected3 = {{ 13, 31, 49 }};
 
     assert(found3 == expected3);
-    return 0;
 
+    std::vector<vec3> spline = {
+        {{ 0, 0, 0 }},
+        {{ 0, 3, 0 }},
+        {{ 0, 3, 3 }}
+    };
+
+    std::vector<vec3> directions = getDirections(spline);
+//    for (auto &l : directions) {
+//        for (auto &h : l) cout << h << "   ";
+//        cout << endl;
+//    }
+
+    vec3 exp1 = {{ 0, 1, 0 }};
+    vec3 exp2 = {{ 0, 0, 1 }};
+    assert(directions[0] == exp1);
+    assert(directions[2] == exp2);
+    assert(directions[1][1] == directions[1][2]);
+
+    // if only 1 vertex, no direction:
+    spline.clear();
+    spline.push_back({{ 0, 5, 0 }});
+    directions = getDirections(spline);
+    assert(directions.size() == 0);
+
+    // if spline is just a line, the direction of both vertices are the same
+    spline.clear();
+    spline.push_back({{ 0, 5, 0 }});
+    spline.push_back({{ 0, 8, 0 }});
+    directions = getDirections(spline);
+    assert(directions.size() == 2);
+    assert(directions[1] == directions[0]);
+
+    return 0;
 }

@@ -1,5 +1,6 @@
 #include "VecMatMath.hpp"
 #include <cmath>
+#include <cassert>
 
 #define PI 3.14159265
 
@@ -47,4 +48,33 @@ mat3 getRotationMatrix(vec3 axis, float rads)
     }};
 }
 
+std::vector<vec3> getDirections(const std::vector<vec3> &spline)
+{
+    // cannot be 1 point, and if points, the points cannot be in the same location
+    if (spline.size() <= 1
+        || (spline.size() == 2 && spline[1] == spline[0])) return std::vector<vec3>();
 
+    std::vector<vec3> directions;
+
+    vec3 firstDirection = unitVec(deduct(spline[1], spline[0]));
+    directions.push_back(firstDirection);
+
+    if (spline.size() == 2) {
+        directions.push_back(firstDirection);
+        return directions;
+    }
+
+    for (int i = 1; i < spline.size() - 1; i++) {
+        directions.push_back(unitVec(deduct(spline[i + 1],
+                                            spline[i - 1])));
+    }
+
+    vec3 lastDirection = unitVec(deduct(spline[spline.size() - 1],
+                                        spline[spline.size() - 2]));
+
+    directions.push_back(lastDirection);
+
+    assert(spline.size() == directions.size());
+
+    return directions;
+}
