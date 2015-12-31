@@ -13,6 +13,14 @@ int main()
     assert(found2 == expected2);
 
     vec3 found3, expected3;
+
+    vec3 p, q;
+    p = {{ 1, 2, -5 }}; q = {{ 9, -3, 1 }};
+    found3 = add(p, q);
+    expected3 = {{ 10, -1, -4 }};
+
+    assert(found3 == expected3);
+
     found3 = cross({{ 1, 2, -5 }}, {{ 9, -3, 1 }});
     expected3 = {{ -13, -46, -21 }};
 
