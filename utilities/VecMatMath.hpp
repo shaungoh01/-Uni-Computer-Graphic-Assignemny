@@ -118,5 +118,5 @@ T findCenter(const std::vector<T> &pts)
         }
     }
 
-    return applyVecOp<T, R>(minVec, maxVec, [](const R &p, const R &q)->R { return p + q / 2; });
+    return applyVecOp<T, R>(minVec, maxVec, [](const R &p, const R &q)->R { return (p + q) / 2; });
 }
