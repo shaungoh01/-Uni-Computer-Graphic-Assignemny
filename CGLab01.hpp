@@ -162,7 +162,7 @@ class MyVirtualWorld
      elephant->setTranslateX(-10.5f);
      elephant->setRotateY(-45.0f);
 
-    pts = getCircle(7, 8);
+    pts = getCircle(8, 7);
 
     vec3 startNormal  = {{ 0, 1, 0 }};
     vec3 targetNormal = {{ 0.3333, 0.3333, 0.3333 }};

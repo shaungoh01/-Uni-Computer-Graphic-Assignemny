@@ -80,8 +80,8 @@ std::vector<vec3> getDirections(const std::vector<vec3> &spline)
 }
 
 vector<vec3> generateSpline(float start, float finish, int segments,
-                                 function<float(float)> xFunc,
                                  function<float(float)> zFunc,
+                                 function<float(float)> xFunc,
                                  function<float(float)> yFunc)
 {
     if (start >= finish) return vector<vec3>();
@@ -96,10 +96,10 @@ vector<vec3> generateSpline(float start, float finish, int segments,
     return spline;
 }
 
-vector<vec3> getCircle(int segments, float radius, float start, float finish)
+vector<vec3> getCircle(float radius, int segments, float start, float finish)
 {
     return generateSpline(start, finish, segments,
-                         [&](float x)->float { return cos(x) * radius; },
-                         [&](float z)->float { return sin(z) * radius; });
+                         [&](float z)->float { return sin(z) * radius; },
+                         [&](float x)->float { return cos(x) * radius; });
 }
 

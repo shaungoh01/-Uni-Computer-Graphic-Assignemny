@@ -18,11 +18,11 @@ mat3 getRotationMatrix(vec3 axis, float rads);
 std::vector<vec3> getDirections(const std::vector<vec3> &spline);
 
 std::vector<vec3> generateSpline(float start, float finish, int segments,
-                                 std::function<float(float)> xFunc = [](float x)->float { return x; },
                                  std::function<float(float)> zFunc = [](float z)->float { return 0; },
+                                 std::function<float(float)> xFunc = [](float x)->float { return x; },
                                  std::function<float(float)> yFunc = [](float y)->float { return 0; });
 
-std::vector<vec3> getCircle(int segments, float radius, float start = 0, float finish = 6.2831853);
+std::vector<vec3> getCircle(float radius, int segments, float start = 0, float finish = 6.2831853);
 
 template<typename T>
 float dot(const T &a, const T &b)
