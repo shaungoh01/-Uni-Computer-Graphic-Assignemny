@@ -2,6 +2,7 @@
 
 #include <cmath>
 #include <algorithm>
+#include <functional>
 #include <array>
 #include <vector>
 #include <float.h>
@@ -38,15 +39,33 @@ float magnitude(const T &a)
     return std::sqrt(sumSquare);
 }
 
-template<typename T>
-T add(const T &a, const T &b)
+template<typename T, typename R = typename T::value_type>
+T applyVecOp(const T &a, const T &b, std::function<R(const R &p, const R &q)> op)
 {
-    vec3 c;
+    T c;
     for (int i = 0; i < c.size(); i++) {
-        c[i] = a[i] + b[i];
+        c[i] = op(a[i], b[i]);
     }
 
     return c;
+}
+
+template<typename T, typename R = typename T::value_type>
+T add(const T &a, const T &b)
+{
+    return applyVecOp<T, R>(a, b, [](const R &p, const R &q)->R { return p + q; });
+}
+
+template<typename T, typename R = typename T::value_type>
+T deduct(const T &a, const T &b)
+{
+    return applyVecOp<T, R>(a, b, [](const R &p, const R &q)->R { return p - q; });
+}
+
+template<typename T, typename R = typename T::value_type>
+T mult(const T &a, const T &b)
+{
+    return applyVecOp<T, R>(a, b, [](const R &p, const R &q)->R { return p * q; });
 }
 
 template<typename T>
@@ -74,7 +93,7 @@ T negative(const T &a)
     return neg;
 }
 
-template<typename T>
+template<typename T, typename R = typename T::value_type>
 T findCenter(const std::vector<T> &pts)
 {
     if (pts.size() == 0) return T();
@@ -90,10 +109,5 @@ T findCenter(const std::vector<T> &pts)
         }
     }
 
-    T center;
-    for (int i = 0; i < minVec.size(); i++) {
-        center[i] = minVec[i] + maxVec[i] / 2;
-    }
-
-    return center;
+    return applyVecOp<T, R>(minVec, maxVec, [](const R &p, const R &q)->R { return p + q / 2; });
 }
