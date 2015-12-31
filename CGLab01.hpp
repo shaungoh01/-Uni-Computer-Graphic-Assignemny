@@ -112,6 +112,7 @@ class MyVirtualWorld
     vector<vec2> points;
     Extrusion *extrude;
 
+    vector<vec3> pts, ptsTransformed;
 
     long int timeold, timenew, elapseTime;
 
@@ -161,7 +162,24 @@ class MyVirtualWorld
      elephant->setTranslateX(-10.5f);
      elephant->setRotateY(-45.0f);
 
+    int radius = 5;
+    float q = 0;
+    int segments = 5;
+    float interval = (2 * 3.14159265 / segments);
+    for (int i = 0; i < segments; i++) {
+        pts.push_back({{ cos(q) * radius, 0, sin(q) * radius }});
+        q -= interval;
+    }
 
+    vec3 startNormal  = {{ 0, 1, 0 }};
+    vec3 targetNormal = {{ 0.3333, 0.3333, 0.3333 }};
+    float angleRad = dot(unitVec(startNormal), unitVec(targetNormal));
+    vec3 axis = cross(startNormal, targetNormal);
+    mat3 rotationMatrix = getRotationMatrix(axis, angleRad);
+
+    for (auto &p : pts) {
+        ptsTransformed.push_back(mult(rotationMatrix, p));
+    }
      //Try this:
      //High-polygons dragon (original model of Stanford Dragon)
      // (871414 triangles) will take some minutes for it to get loaded

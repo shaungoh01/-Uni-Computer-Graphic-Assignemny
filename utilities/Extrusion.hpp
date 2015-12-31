@@ -2,13 +2,14 @@
 
 #include <vector>
 #include "VecMatMath.hpp"
+#include "Drawable.hpp"
 
-class Extrusion
+class Extrusion : public Drawable
 {
 public:
     Extrusion(std::vector<vec2> &points, int depth = 1);
 
-    void draw();
+    void draw() override;
 
     void setDepth(const int d);
     int getDepth() const;

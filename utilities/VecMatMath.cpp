@@ -1,46 +1,11 @@
 #include "VecMatMath.hpp"
 #include <cmath>
 
-vec3 add(vec3 a, vec3 b)
-{
-    vec3 c;
-    for (int i = 0; i < c.size(); i++) {
-        c[i] = a[i] + b[i];
-    }
+#define PI 3.14159265
 
-    return c;
-}
+using namespace std;
 
-float dot(vec3 a, vec3 b)
-{
-    float res = 0;
-
-    for (int i = 0; i < a.size(); i++) {
-        res += (a[i] * b[i]);
-    }
-
-    return res;
-}
-
-float magnitude(vec3 a)
-{
-    float sumSquare = 0;
-
-    for (auto &b : a) {
-        sumSquare += (b*b);
-    }
-
-    return std::sqrt(sumSquare);
-}
-
-vec3 unitVec(vec3 a)
-{
-    float mag = magnitude(a);
-
-    return {{ a[0]/mag, a[1]/mag, a[2]/mag }};
-}
-
-vec3 cross(vec3 a, vec3 b)
+vec3 cross(const vec3 &a, const vec3 &b)
 {
     return
     {{
@@ -50,7 +15,36 @@ vec3 cross(vec3 a, vec3 b)
     }};
 }
 
-vec3 negative(vec3 a)
+vec3 mult(const mat3& m, const vec3& a)
 {
-    return {{ -a[0], -a[1], -a[2] }};
+    return {{
+        a[0] * m[0][0] + a[1] * m[1][0] + a[2] * m[2][0],
+        a[0] * m[0][1] + a[1] * m[1][1] + a[2] * m[2][1],
+        a[0] * m[0][2] + a[1] * m[1][2] + a[2] * m[2][2]
+    }};
 }
+
+mat3 getRotationMatrix(vec3 axis, float rads)
+{
+    axis = unitVec(axis);
+
+    return {{
+        {{
+            cos(rads) + (axis[0] * axis[0]) * (1 - cos(rads)),
+            (axis[1] * axis[0]) * (1 - cos(rads)) + axis[2] * sin(rads),
+            (axis[2] * axis[0]) * (1 - cos(rads)) - axis[1] * sin(rads)
+        }},
+        {{
+            (axis[0] * axis[1]) * (1 - cos(rads)) - axis[2] * sin(rads),
+            cos(rads) + (axis[1] * axis[1]) * (1 - cos(rads)),
+            (axis[2] * axis[1]) * (1 - cos(rads)) + axis[0] * sin(rads)
+        }},
+        {{
+            (axis[0] * axis[2]) * (1 - cos(rads)) + axis[1] * sin(rads),
+            (axis[1] * axis[2]) * (1 - cos(rads)) - axis[0] * sin(rads),
+            cos(rads) + (axis[2] * axis[2]) * (1 - cos(rads))
+        }}
+    }};
+}
+
+

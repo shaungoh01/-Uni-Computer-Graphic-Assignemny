@@ -299,7 +299,16 @@ void MyVirtualWorld::draw()
 */
 // deer->draw();
 // elephant->draw();
+//extrude->draw();
 
+glColor3f(0.0f, 0.0f, 1.0f );
+glBegin(GL_POLYGON);
+for (auto &p : pts) glVertex3fv(&p[0]);
+glEnd();
 
-extrude->draw();
+glColor3f(0.0f, 1.0f, 0.0f );
+glBegin(GL_POLYGON);
+for (auto &p : ptsTransformed) glVertex3fv(&p[0]);
+glEnd();
+
 }
