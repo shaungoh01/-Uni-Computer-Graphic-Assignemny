@@ -50,7 +50,7 @@ mat3 getRotationMatrix(vec3 axis, float rads)
 
 std::vector<vec3> getDirections(const std::vector<vec3> &spline)
 {
-    // cannot be 1 point, and if points, the points cannot be in the same location
+    // cannot be 1 point, and if only 2 points, the points cannot be in the same location
     if (spline.size() <= 1
         || (spline.size() == 2 && spline[1] == spline[0])) return std::vector<vec3>();
 
