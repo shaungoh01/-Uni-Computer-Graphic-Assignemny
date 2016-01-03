@@ -48,6 +48,14 @@ mat3 getRotationMatrix(vec3 axis, float rads)
     }};
 }
 
+mat3 getRotationMatrix(const vec3 &sourceNormal, const vec3 &targetNormal)
+{
+    float angleRad = dot(unitVec(sourceNormal), unitVec(targetNormal));
+    vec3 axis = cross(sourceNormal, targetNormal);
+
+    return getRotationMatrix(axis, angleRad);
+}
+
 std::vector<vec3> getDirections(const std::vector<vec3> &spline)
 {
     // cannot be 1 point, and if only 2 points, the points cannot be in the same location

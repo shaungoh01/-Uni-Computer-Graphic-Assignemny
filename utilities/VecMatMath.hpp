@@ -14,6 +14,7 @@ typedef std::array<vec3, 3> mat3;
 vec3 cross(const vec3 &a, const vec3 &b);
 vec3 mult(const mat3& m, const vec3& a);
 mat3 getRotationMatrix(vec3 axis, float rads);
+mat3 getRotationMatrix(const vec3 &sourceNormal, const vec3 &targetNormal);
 // find the directional vector of each vertex given a polyspline
 std::vector<vec3> getDirections(const std::vector<vec3> &spline);
 

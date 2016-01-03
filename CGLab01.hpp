@@ -166,9 +166,7 @@ class MyVirtualWorld
 
     vec3 startNormal  = {{ 0, 1, 0 }};
     vec3 targetNormal = {{ 0.3333, 0.3333, 0.3333 }};
-    float angleRad = dot(unitVec(startNormal), unitVec(targetNormal));
-    vec3 axis = cross(startNormal, targetNormal);
-    mat3 rotationMatrix = getRotationMatrix(axis, angleRad);
+    mat3 rotationMatrix = getRotationMatrix(startNormal, targetNormal);
 
     for (auto &p : pts) {
         ptsTransformed.push_back(mult(rotationMatrix, p));
