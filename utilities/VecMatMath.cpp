@@ -50,7 +50,7 @@ mat3 getRotationMatrix(vec3 axis, float rads)
 
 mat3 getRotationMatrix(const vec3 &sourceNormal, const vec3 &targetNormal)
 {
-    float angleRad = dot(unitVec(sourceNormal), unitVec(targetNormal));
+    float angleRad = acos(dot(unitVec(sourceNormal), unitVec(targetNormal)));
     vec3 axis = cross(sourceNormal, targetNormal);
 
     return getRotationMatrix(axis, angleRad);
