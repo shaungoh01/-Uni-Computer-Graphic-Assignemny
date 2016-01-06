@@ -14,6 +14,16 @@ typedef std::array<vec3, 3> mat3;
 vec3 cross(const vec3 &a, const vec3 &b);
 vec3 mult(const mat3& m, const vec3& a);
 mat3 getRotationMatrix(vec3 axis, float rads);
+mat3 getRotationMatrix(const vec3 &sourceNormal, const vec3 &targetNormal);
+// find the directional vector of each vertex given a polyspline
+std::vector<vec3> getDirections(const std::vector<vec3> &spline);
+
+std::vector<vec3> generateSpline(float start, float finish, int segments,
+                                 std::function<float(float)> zFunc = [](float z)->float { return 0; },
+                                 std::function<float(float)> xFunc = [](float x)->float { return x; },
+                                 std::function<float(float)> yFunc = [](float y)->float { return 0; });
+
+std::vector<vec3> getCircle(float radius, int segments, float start = 0, float finish = 6.2831853);
 
 template<typename T>
 float dot(const T &a, const T &b)
@@ -109,5 +119,5 @@ T findCenter(const std::vector<T> &pts)
         }
     }
 
-    return applyVecOp<T, R>(minVec, maxVec, [](const R &p, const R &q)->R { return p + q / 2; });
+    return applyVecOp<T, R>(minVec, maxVec, [](const R &p, const R &q)->R { return (p + q) / 2; });
 }
