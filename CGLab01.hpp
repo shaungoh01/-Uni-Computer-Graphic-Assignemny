@@ -1,24 +1,24 @@
 /*
  TGD2151 Computer Graphics Fundamentals
  Faculty of Computing & Informatics, Multimedia University
- 
+
  CGLab01.hpp
- 
+
  Objective: Header File for Lab01 Demo Models / World
- 
+
  (C) 2006-2015 Ya Ping Wong, All Rights Reserved.
  http://wongyaping.com
- 
+
  Stanford Dragon:
  Original Model : Copyright by Stanford University
  http://graphics.stanford.edu/data/3Dscanrep/
  Low-polygons Model : Simplified by Mr. Ng Kok Why
  <kwng@mmu.edu.my>
- 
+
  INSTRUCTIONS
  ============
  Please refer to CGLabmain.cpp for instructions
- 
+
  SPECIAL NOTES
  =============
  * Try loading the high-polygons version of
@@ -26,7 +26,7 @@
  * Try out other models from http://graphics.stanford.edu/data/3Dscanrep/
  However, you will need to modify the file to comform to the
  format that is being used in this program.
- 
+
  CHANGE LOG
  ==========
  */
@@ -42,31 +42,31 @@
 #include <vector>
 
 namespace CGLab01 {
-    
+
     class SimplePolygon
     {
     public:
         void draw();
     };
-    
+
     class SimpleTriangles
     {
     public:
         void draw();
     };
-    
+
     class SimpleBox
     {
     public:
         void draw();
     };
-    
+
     class SimpleTeapot
     {
     public:
         void draw();
     };
-    
+
     class SimpleBouncingBall
     {
     public:
@@ -144,12 +144,14 @@ namespace CGLab01 {
         {
             glEnable(GL_LIGHTING);
             
+/*
             points = {
                 {{ -4.0f, -5.0f }}, {{ -4.0f,  5.0f }},
                 {{  0.0f,  7.0f }}, {{  4.0f,  5.0f }},
                 {{  4.0f, -5.0f }}, {{  0.0f, -7.0f }}
             };
             
+*/
             points3d = {
                 {{ -4.0f, -5.0f,5.0f }},
                 {{  4.0f,  5.0f,5.0f }},
@@ -158,7 +160,28 @@ namespace CGLab01 {
                 {{  16.0f, -5.0f,5.0f }},
                 {{  20.0f, -7.0f,5.0f }}
             };
-            
+
+            auto circle = getCircle(2, 10);
+            for (auto &v : circle) points.push_back({{ v[0], v[2] }});
+
+            //spring:
+            points3d = generateSpline(-50, 50, 150,
+                                      [](float z)->float { return sin(z/2.0) * 15; },
+                                      [](float x)->float { return cos(x/2.0) * 15; },
+                                      [](float y)->float { return y; });
+            // heart:
+            /*
+            points3d = generateSpline(-50, 50, 150,
+                                      [](float z)->float {
+                                            float t = z/5.0;
+                                            return 16 * sin(t) * sin(t) * sin(t);
+                                        },
+                                      [](float x)->float {
+                                            float t = x/5.0;
+                                            return 13 * cos(t) - 5*cos(2*t) - 2*cos(3*t) - cos(4*t);
+                                        });
+            */
+
             extrude = new Extrusion(points);
             extrude->setDepth(8);
             loft = new Loft(points, points3d);
