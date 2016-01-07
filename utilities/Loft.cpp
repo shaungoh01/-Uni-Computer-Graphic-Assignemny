@@ -10,20 +10,42 @@
 #include "VecMatMath.hpp"
 #include "Extrusion.hpp"
 #include <GLUT/glut.h>
+#include <iostream>
 Loft::Loft(const std::vector<vec2> &points, const std::vector<vec3> &path): points2d(points),path(path) {
     init();
 }
 void Loft::init() {
+    directions = getDirections(path);
+    for(int i = 0; i < points2d.size(); i++)
+    {
+        std::vector<vec3> row;
+        temp_points2d.push_back(row);
+    }
+    for(auto it = path.begin(); it != path.end(); it++) {
+        long i = std::distance( path.begin(), it );
+        mat3 rotationMatrix = getRotationMatrix(directions[i], directions[i+1]);
+        
+        for(auto jt = points2d.begin(); jt != points2d.end(); jt++) {
+            vec3 temp = mult(rotationMatrix, {(*jt)[0], (*jt)[1], (*it)[2] });
+            vec3 difference = { (*(it + 1))[0] - (*it)[0],
+                (*(it + 1))[1] - (*it)[1],
+                (*(it + 1))[2] - (*it)[2]
+            };
+            temp_points2d[i].push_back(add(temp, difference));
+        }
+    }
 
     
 }
 void Loft::draw() {
-    directions = getDirections(path);
-    glBegin(GL_POLYGON);
-    for(auto point : points2d) {
-        glVertex3f(point[0], 0, point[1]);
-    }
-    glEnd();
+
+//    glBegin(GL_POLYGON);
+//    for(auto point : points2d) {
+//        glVertex3f(point[0], 0, point[1]);
+//    }
+//    glEnd();
+    
+    //Guideline for Loft
     glBegin(GL_LINES);
     glColor3f(1.0, 1.0, 0.0);
     for (auto it = path.begin(); it != path.end(); it++) {
@@ -34,56 +56,37 @@ void Loft::draw() {
     }
     glEnd();
     glPushMatrix();
-    std::vector<std::vector<vec3> > temp_points2d;
-    for(int i = 0; i < points2d.size(); i++)
-    {
-        std::vector<vec3> row;
-        temp_points2d.push_back(row);
-    }
-    for(auto it = path.begin(); it != path.end(); it++) {
-        long i = std::distance( path.begin(), it );
-        mat3 rotationMatrix = getRotationMatrix(directions[i], directions[i+1]);
 
-        for(auto jt = points2d.begin(); jt != points2d.end(); jt++) {
-            vec3 temp = mult(rotationMatrix, {(*jt)[0], (*jt)[1], (*it)[2] });
-            vec3 difference = { (*(it + 1))[0] - (*it)[0],
-                (*(it + 1))[1] - (*it)[1],
-                (*(it + 1))[2] - (*it)[2]
-            };
-            temp_points2d[i].push_back(add(temp, difference));
-            
-        }
-    }
+    //Draw polygon over loft path
     for(auto it = temp_points2d.begin(); it != temp_points2d.end(); it++) {
-//        long i = std::distance( temp_points2d.begin(), it );
+//        std::cout << std::distance( temp_points2d.begin(), it ) << std::endl;
         glBegin(GL_POLYGON);
         for(auto jt = (*it).begin(); jt != (*it).end(); jt++) {
             glVertex3f((*jt)[0], (*jt)[1], (*jt)[2]);
         }
         glEnd();
-//        glVertex3f(point[0], 0, point[1]);
     }
 
-    for(auto it = path.begin(); it != path.end(); it++) {
-        if (( it + 1) != path.end()) {
-            vec3 difference = { (*(it + 1))[0] - (*it)[0],
-                (*(it + 1))[1] - (*it)[1],
-                (*(it + 1))[2] - (*it)[2]
-            };
-            double distance = sqrt( pow(difference[0],2) + pow(difference[1],2) + pow(difference[2],2));
-
-//            Extrusion *extrude = new Extrusion(temp_);
-//            extrude->setDepth(distance);
-//            extrude->draw();
-
-            
-            
-//            glRotatef(45, directions[i][0], directions[i][1], directions[i][2]);
-//            glTranslatef(distance,0,0);
-            
-//            glTranslatef(difference[0],difference[1],difference[2]);
-        }
-    }
+//    for(auto it = path.begin(); it != path.end(); it++) {
+//        if (( it + 1) != path.end()) {
+//            vec3 difference = { (*(it + 1))[0] - (*it)[0],
+//                (*(it + 1))[1] - (*it)[1],
+//                (*(it + 1))[2] - (*it)[2]
+//            };
+//            double distance = sqrt( pow(difference[0],2) + pow(difference[1],2) + pow(difference[2],2));
+//
+////            Extrusion *extrude = new Extrusion(temp_);
+////            extrude->setDepth(distance);
+////            extrude->draw();
+//
+//            
+//            
+////            glRotatef(45, directions[i][0], directions[i][1], directions[i][2]);
+////            glTranslatef(distance,0,0);
+//            
+////            glTranslatef(difference[0],difference[1],difference[2]);
+//        }
+//    }
     glPopMatrix();
     
 }

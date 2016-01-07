@@ -22,6 +22,7 @@ private:
     const std::vector<vec2> &points2d;
     std::vector<vec3> directions;
     const std::vector<vec3> &path;
+    std::vector<std::vector<vec3> > temp_points2d;
     std::vector<vec3> splines;
 };
 
