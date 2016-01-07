@@ -5,7 +5,7 @@
 #else
 #include <GL/gl.h>
 #endif
-Extrusion::Extrusion(std::vector<vec2> &points2d, int depth) :
+Extrusion::Extrusion(const std::vector<vec2> &points2d, int depth) :
     points2d(points2d), depth(depth)
 {
 

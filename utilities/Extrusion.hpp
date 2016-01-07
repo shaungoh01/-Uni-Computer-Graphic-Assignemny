@@ -7,7 +7,7 @@
 class Extrusion : public Drawable
 {
 public:
-    Extrusion(std::vector<vec2> &points, int depth = 1);
+    Extrusion(const std::vector<vec2> &points, int depth = 1);
 
     void draw() override;
 
@@ -15,6 +15,6 @@ public:
     int getDepth() const;
 
 private:
-    std::vector<vec2> &points2d;
+    const std::vector<vec2> &points2d;
     int depth;
 };

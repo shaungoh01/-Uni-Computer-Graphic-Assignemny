@@ -83,6 +83,7 @@ std::vector<vec3> getDirections(const std::vector<vec3> &spline)
     directions.push_back(lastDirection);
 
     assert(spline.size() == directions.size());
+    
 
     return directions;
 }

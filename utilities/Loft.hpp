@@ -15,11 +15,14 @@
 class Loft {
 public:
     Loft(const std::vector<vec2> &points, const std::vector<vec3> &path);
+    void init();
     void draw();
     
 private:
     const std::vector<vec2> &points2d;
+    std::vector<vec3> directions;
     const std::vector<vec3> &path;
+    std::vector<vec3> splines;
 };
 
 
