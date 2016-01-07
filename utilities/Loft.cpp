@@ -34,12 +34,6 @@ void Loft::init() {
     
 }
 void Loft::draw() {
-
-    glBegin(GL_POLYGON);
-    for(auto point : points2d) {
-        glVertex3f(point[0], 0, point[1]);
-    }
-    glEnd();
     
     //Guideline for Loft
     glBegin(GL_LINES);
@@ -55,7 +49,6 @@ void Loft::draw() {
 
     //Draw polygon over loft path
     for(auto it = points3d.begin(); it != points3d.end(); it++) {
-//        std::cout << std::distance( temp_points2d.begin(), it ) << std::endl;
         glBegin(GL_POLYGON);
         for(auto jt = (*it).begin(); jt != (*it).end(); jt++) {
             glVertex3f((*jt)[0], (*jt)[1], (*jt)[2]);
@@ -89,30 +82,7 @@ void Loft::draw() {
                 
             }
         }
-
-        
     }
-
-//    for(auto it = path.begin(); it != path.end(); it++) {
-//        if (( it + 1) != path.end()) {
-//            vec3 difference = { (*(it + 1))[0] - (*it)[0],
-//                (*(it + 1))[1] - (*it)[1],
-//                (*(it + 1))[2] - (*it)[2]
-//            };
-//            double distance = sqrt( pow(difference[0],2) + pow(difference[1],2) + pow(difference[2],2));
-//
-////            Extrusion *extrude = new Extrusion(temp_);
-////            extrude->setDepth(distance);
-////            extrude->draw();
-//
-//            
-//            
-////            glRotatef(45, directions[i][0], directions[i][1], directions[i][2]);
-////            glTranslatef(distance,0,0);
-//            
-////            glTranslatef(difference[0],difference[1],difference[2]);
-//        }
-//    }
     glPopMatrix();
     
 }
