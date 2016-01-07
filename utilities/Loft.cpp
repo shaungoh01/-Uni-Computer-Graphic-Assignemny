@@ -20,7 +20,7 @@ Loft::Loft(const std::vector<vec2> &points, const std::vector<vec3> &path): poin
 }
 void Loft::init() {
     directions = getDirections(path);
-    for(int i = 0; i < points2d.size(); i++)
+    for(int i = 0; i < path.size(); i++)
     {
         std::vector<vec3> row;
         points3d.push_back(row);
