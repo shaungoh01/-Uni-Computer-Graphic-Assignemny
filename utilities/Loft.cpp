@@ -61,6 +61,36 @@ void Loft::draw() {
             glVertex3f((*jt)[0], (*jt)[1], (*jt)[2]);
         }
         glEnd();
+        
+        if( ( it + 1) != points3d.end()) {
+            for(auto jt = (*it).begin(); jt != (*it).end(); jt++) {
+                long j = std::distance( (*it).begin(), jt );
+                
+                glBegin(GL_QUADS);
+                glColor3f(1.0, 0.0, 0.0);
+                glVertex3f((*jt)[0], (*jt)[1], (*jt)[2]);
+                
+                if ( (jt+1) != (*it).end() ) {
+                    glVertex3f((*(jt+1))[0], (*(jt+1))[1], (*(jt+1))[2]);
+                }else {
+                    auto temp_it = (*it).begin();
+                    glVertex3f ((*temp_it)[0], ((*temp_it)[1]), ((*temp_it)[2]));
+                }
+                
+                auto next_point_it = (*(it + 1)).begin() + j;
+                if ( (next_point_it+1) != (*(it + 1)).end() ) {
+                    glVertex3f((*(next_point_it+1))[0], (*(next_point_it+1))[1], (*(next_point_it+1))[2]);
+                }else {
+                    auto temp_it = (*(it + 1)).begin();
+                    glVertex3f ((*temp_it)[0], ((*temp_it)[1]), ((*temp_it)[2]));
+                }
+                glVertex3f((*next_point_it)[0], (*next_point_it)[1], (*next_point_it)[2]);
+                glEnd();
+                
+            }
+        }
+
+        
     }
 
 //    for(auto it = path.begin(); it != path.end(); it++) {
