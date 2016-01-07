@@ -19,19 +19,15 @@ void Loft::init() {
     for(int i = 0; i < points2d.size(); i++)
     {
         std::vector<vec3> row;
-        temp_points2d.push_back(row);
+        points3d.push_back(row);
     }
     for(auto it = path.begin(); it != path.end(); it++) {
         long i = std::distance( path.begin(), it );
-        mat3 rotationMatrix = getRotationMatrix(directions[i], directions[i+1]);
+        mat3 rotationMatrix = getRotationMatrix({0,1,0}, directions[i]);
         
         for(auto jt = points2d.begin(); jt != points2d.end(); jt++) {
-            vec3 temp = mult(rotationMatrix, {(*jt)[0], (*jt)[1], (*it)[2] });
-            vec3 difference = { (*(it + 1))[0] - (*it)[0],
-                (*(it + 1))[1] - (*it)[1],
-                (*(it + 1))[2] - (*it)[2]
-            };
-            temp_points2d[i].push_back(add(temp, difference));
+            vec3 temp = mult(rotationMatrix, {(*jt)[0], 0,(*jt)[1] });
+            points3d[i].push_back(add(temp, { (*it)[0], (*it)[1], (*it)[2] }));
         }
     }
 
@@ -39,11 +35,11 @@ void Loft::init() {
 }
 void Loft::draw() {
 
-//    glBegin(GL_POLYGON);
-//    for(auto point : points2d) {
-//        glVertex3f(point[0], 0, point[1]);
-//    }
-//    glEnd();
+    glBegin(GL_POLYGON);
+    for(auto point : points2d) {
+        glVertex3f(point[0], 0, point[1]);
+    }
+    glEnd();
     
     //Guideline for Loft
     glBegin(GL_LINES);
@@ -58,7 +54,7 @@ void Loft::draw() {
     glPushMatrix();
 
     //Draw polygon over loft path
-    for(auto it = temp_points2d.begin(); it != temp_points2d.end(); it++) {
+    for(auto it = points3d.begin(); it != points3d.end(); it++) {
 //        std::cout << std::distance( temp_points2d.begin(), it ) << std::endl;
         glBegin(GL_POLYGON);
         for(auto jt = (*it).begin(); jt != (*it).end(); jt++) {
