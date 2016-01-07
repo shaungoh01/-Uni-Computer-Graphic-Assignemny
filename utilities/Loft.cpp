@@ -7,10 +7,14 @@
 //
 
 #include "Loft.hpp"
-#include "VecMatMath.hpp"
-#include "Extrusion.hpp"
-#include <GLUT/glut.h>
+
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#else
+#include <GL/gl.h>
+#endif
 #include <iostream>
+
 Loft::Loft(const std::vector<vec2> &points, const std::vector<vec3> &path): points2d(points),path(path) {
     init();
 }
@@ -23,11 +27,11 @@ void Loft::init() {
     }
     for(auto it = path.begin(); it != path.end(); it++) {
         long i = std::distance( path.begin(), it );
-        mat3 rotationMatrix = getRotationMatrix({0,1,0}, directions[i]);
-        
+        mat3 rotationMatrix = getRotationMatrix({{0,1,0}}, directions[i]);
+
         for(auto jt = points2d.begin(); jt != points2d.end(); jt++) {
-            vec3 temp = mult(rotationMatrix, {(*jt)[0], 0,(*jt)[1] });
-            points3d[i].push_back(add(temp, { (*it)[0], (*it)[1], (*it)[2] }));
+            vec3 temp = mult(rotationMatrix, {{ (*jt)[0], 0,        (*jt)[1] }});
+            points3d[i].push_back(add(temp,  {{ (*it)[0], (*it)[1], (*it)[2] }}));
         }
     }
 
