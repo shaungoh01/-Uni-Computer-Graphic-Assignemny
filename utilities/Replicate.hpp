@@ -8,6 +8,12 @@
 
 class Replicate
 {
+    public:
+        Replicate();
+        Replicate(const std::vector<vec3> &points);
+
+        void draw();
+    private:
 
 };
 

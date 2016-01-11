@@ -304,7 +304,7 @@ void MyVirtualWorld::draw()
     glColor3f(1.0f, 1.0f, 1.0f );
 
 
-    extrude->draw();
+    replicate->draw();
 
 
 

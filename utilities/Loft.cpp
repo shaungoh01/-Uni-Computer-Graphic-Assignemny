@@ -15,7 +15,8 @@
 #endif
 #include <iostream>
 
-Loft::Loft(const std::vector<vec2> &points, const std::vector<vec3> &path): points2d(points),path(path) {
+Loft::Loft(const std::vector<vec2> &points, const std::vector<vec3> &path): points2d(points),path(path)
+{
     init();
 }
 void Loft::init()
@@ -37,11 +38,9 @@ void Loft::init()
             points3d[i].push_back(add(temp,  {{ (*it)[0], (*it)[1], (*it)[2] }}));
         }
     }
-
-
 }
-void Loft::draw() {
-
+void Loft::draw()
+{
     //Guideline for Loft
     glBegin(GL_LINES);
     glColor3f(1.0, 1.0, 0.0);

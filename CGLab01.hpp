@@ -190,6 +190,9 @@ namespace CGLab01 {
             loft = new Loft(points, points3d);
 
 
+
+
+
             //Low-polygons dragon (5835 triangles)
             mymodelloader.load("data/model_lowpolygonstanforddragon.txt",100);
             deer = new Mesh("data/deer.obj");
