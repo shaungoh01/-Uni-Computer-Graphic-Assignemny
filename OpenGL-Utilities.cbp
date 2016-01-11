@@ -46,6 +46,8 @@
 		<Unit filename="utilities/Mesh.hpp" />
 		<Unit filename="utilities/ObjReader.cpp" />
 		<Unit filename="utilities/ObjReader.hpp" />
+		<Unit filename="utilities/Replicate.cpp" />
+		<Unit filename="utilities/Replicate.hpp" />
 		<Unit filename="utilities/Transformable.cpp" />
 		<Unit filename="utilities/Transformable.hpp" />
 		<Unit filename="utilities/VecMatMath.cpp" />

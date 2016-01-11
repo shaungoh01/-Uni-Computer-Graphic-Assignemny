@@ -38,6 +38,7 @@
 #include "utilities/Mesh.hpp"
 #include "utilities/Extrusion.hpp"
 #include "utilities/Loft.hpp"
+#include "utilities/Replicate.hpp"
 #include <string>
 #include <vector>
 
@@ -78,7 +79,7 @@ namespace CGLab01 {
         float vel0;
         float accel;
     };
-    
+
     class MyModelLoader
     {
     public:
@@ -96,7 +97,7 @@ namespace CGLab01 {
         vector<int> faces;
         GLuint stanforddragon; //for generating display list
     };
-    
+
     //------------------------------------
     //the main program will call methods from this class
     class MyVirtualWorld
@@ -112,45 +113,47 @@ namespace CGLab01 {
         Mesh *elephant;
         vector<vec2> points;
         Extrusion *extrude;
-        
+
         Loft *loft;
-        
+
+        Replicate *replicate;
+
         vector<vec3> pts, ptsTransformed,points3d;
-        
+
         long int timeold, timenew, elapseTime;
-        
+
         void draw();
-        
+
         ~MyVirtualWorld() {
             delete deer;
             delete elephant;
             delete extrude;
         }
-        
+
         void tickTime()
         {
-            
+
             timenew    = glutGet(GLUT_ELAPSED_TIME);
             elapseTime = timenew - timeold;
             timeold    = timenew;
-            
+
             simplebouncingball.tickTime(elapseTime);
         }
-        
+
         //for any one-time only initialization of the
         //   virtual world before any rendering takes place
         //   BUT after OpenGL has been initialized
         void init()
         {
             glEnable(GL_LIGHTING);
-            
+
 /*
             points = {
                 {{ -4.0f, -5.0f }}, {{ -4.0f,  5.0f }},
                 {{  0.0f,  7.0f }}, {{  4.0f,  5.0f }},
                 {{  4.0f, -5.0f }}, {{  0.0f, -7.0f }}
             };
-            
+
 */
             points3d = {
                 {{ -4.0f, -5.0f,5.0f }},
@@ -185,25 +188,26 @@ namespace CGLab01 {
             extrude = new Extrusion(points);
             extrude->setDepth(8);
             loft = new Loft(points, points3d);
-            
+
+
             //Low-polygons dragon (5835 triangles)
             mymodelloader.load("data/model_lowpolygonstanforddragon.txt",100);
             deer = new Mesh("data/deer.obj");
             deer->setFlatColor({{.8, .2, .8}});
             deer->setTranslateX(10.5f);
             deer->setScale(0.5f);
-            
+
             elephant = new Mesh("data/elephant-triangulated.obj");
             elephant->setFlatColor({{ .8, .1, .15 }});
             elephant->setTranslateX(-10.5f);
             elephant->setRotateY(-45.0f);
-            
+
             pts = getCircle(8, 7);
-            
+
             vec3 startNormal  = {{ 0, 1, 0 }};
             vec3 targetNormal = {{ 0.3333, 0.3333, 0.3333 }};
             mat3 rotationMatrix = getRotationMatrix(startNormal, targetNormal);
-            
+
             for (auto &p : pts) {
                 ptsTransformed.push_back(mult(rotationMatrix, p));
             }
@@ -211,16 +215,16 @@ namespace CGLab01 {
             //High-polygons dragon (original model of Stanford Dragon)
             // (871414 triangles) will take some minutes for it to get loaded
             //mymodelloader.load("data/model_highpolygonstanforddragon.txt",100);
-            
+
             //mymodelloader.load("data/model_rose.txt", 0.2);
-            
+
             //mymodelloader.load("data/model_shuttle.txt", 0.1);
-            
+
             timeold = glutGet(GLUT_ELAPSED_TIME);
-            
+
         }
     };
-    
+
 }; //end of namespace CGLab01
 
 #endif //YP_CGLAB01_HPP

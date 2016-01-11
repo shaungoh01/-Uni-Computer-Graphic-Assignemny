@@ -300,11 +300,13 @@ void MyVirtualWorld::draw()
 // deer->draw();
 // elephant->draw();
 //extrude->draw();
-    
+
     glColor3f(1.0f, 1.0f, 1.0f );
 
-    
-    loft->draw();
+
+    extrude->draw();
+
+
 
 //glColor3f(0.0f, 0.0f, 1.0f );
 //glBegin(GL_POLYGON);
