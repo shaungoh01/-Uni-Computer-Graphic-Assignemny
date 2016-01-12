@@ -168,7 +168,7 @@ namespace CGLab01 {
             for (auto &v : circle) points.push_back({{ v[0], v[2] }});
 
             //spring:
-            points3d = generateSpline(-50, 50, 150,
+            points3d = generateSpline(-50, 50, 50,
                                       [](float z)->float { return sin(z/2.0) * 15; },
                                       [](float x)->float { return cos(x/2.0) * 15; },
                                       [](float y)->float { return y; });
@@ -198,7 +198,8 @@ namespace CGLab01 {
             mymodelloader.load("data/model_lowpolygonstanforddragon.txt",100);
             deer = new Mesh("data/deer.obj");
             deer->setFlatColor({{.8, .2, .8}});
-            deer->setTranslateX(10.5f);
+            deer->setTranslateY(-5.5f);
+            deer->setRotateZ(-90);
             deer->setScale(0.5f);
 
             elephant = new Mesh("data/elephant-triangulated.obj");
