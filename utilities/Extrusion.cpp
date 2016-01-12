@@ -18,6 +18,7 @@ void Extrusion::draw()
         glVertex3f(p[0], depth, p[1]);
     }
     glEnd();
+
     glBegin(GL_POLYGON);
     for (auto p = points2d.rbegin(); p != points2d.rend(); ++p) {
         glVertex3f((*p)[0], 0, (*p)[1]);

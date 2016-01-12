@@ -189,6 +189,7 @@ namespace CGLab01 {
             extrude->setDepth(8);
             loft = new Loft(points, points3d);
 
+            replicate = new Replicate(points3d);
 
 
 

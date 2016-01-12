@@ -30,11 +30,11 @@ void Loft::init()
     for(auto it = path.begin(); it != path.end(); it++)
     {
         long i = std::distance( path.begin(), it );
-        mat3 rotationMatrix = getRotationMatrix({{0,1,0}}, directions[i]);
+        mat3 rotationMatrix = getRotationMatrix( {{0,1,0}}, directions[i] );
 
         for(auto jt = points2d.begin(); jt != points2d.end(); jt++)
         {
-            vec3 temp = mult(rotationMatrix, {{ (*jt)[0], 0,        (*jt)[1] }});
+            vec3 temp = mult( rotationMatrix, {{ (*jt)[0], 0,        (*jt)[1] }} );
             points3d[i].push_back(add(temp,  {{ (*it)[0], (*it)[1], (*it)[2] }}));
         }
     }
