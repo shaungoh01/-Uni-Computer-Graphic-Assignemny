@@ -14,6 +14,7 @@ class Replicate
         void draw();
     private:
         std::vector<vec3> pointsObj;
+        std::vector<vec3> plottedPoints;
 };
 
 

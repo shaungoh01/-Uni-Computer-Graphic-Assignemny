@@ -15,16 +15,18 @@ Replicate::Replicate(const std::vector<vec3> &points)
 {
     ///Initialized
     pointsObj = getDirections(points);
+    plottedPoints = points;
 
 }
 
 void Replicate::draw()
 {
-    glBegin(GL_POLYGON);
-        for(auto it=pointsObj.begin();it!=pointsObj.end();it++)
+    glBegin(GL_LINES);
+        glColor3f(0.0f,1.0f,0.0f);
+        for(auto it=plottedPoints.begin();it!=plottedPoints.end();it++)
         {
             glVertex3f((*it)[0],(*it)[1],(*it)[2]);
-            glVertex3f((*it)[2],(*it)[3],(*it)[4]);
+            glVertex3f((*(it+1))[0],(*(it+1))[1],(*(it+1))[2]);
         }
     glEnd();
 
