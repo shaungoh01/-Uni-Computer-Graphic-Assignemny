@@ -11,12 +11,12 @@ Replicate::Replicate()
 
 }
 
-Replicate::Replicate(const std::vector<vec3> &points)
+Replicate::Replicate(const std::vector<vec3> &points,Drawable *picture)
 {
     ///Initialized
     pointsObj = getDirections(points);
     plottedPoints = points;
-
+    drawable =  picture;
 }
 
 void Replicate::draw()
@@ -29,5 +29,17 @@ void Replicate::draw()
             glVertex3f((*(it+1))[0],(*(it+1))[1],(*(it+1))[2]);
         }
     glEnd();
+
+
+        for(auto it=plottedPoints.begin();it!=plottedPoints.end();it++)
+        {
+            glPushMatrix();
+                glTranslatef((*it)[0], (*it)[1],(*it)[2]);
+                drawable->draw();
+            glPopMatrix();
+        }
+
+
+
 
 }

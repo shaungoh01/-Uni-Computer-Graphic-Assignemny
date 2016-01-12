@@ -189,7 +189,7 @@ namespace CGLab01 {
             extrude->setDepth(8);
             loft = new Loft(points, points3d);
 
-            replicate = new Replicate(points3d);
+
 
 
 
@@ -205,6 +205,8 @@ namespace CGLab01 {
             elephant->setFlatColor({{ .8, .1, .15 }});
             elephant->setTranslateX(-10.5f);
             elephant->setRotateY(-45.0f);
+
+            replicate = new Replicate(points3d,deer);
 
             pts = getCircle(8, 7);
 
