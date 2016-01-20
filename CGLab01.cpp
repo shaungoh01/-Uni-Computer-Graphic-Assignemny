@@ -304,8 +304,8 @@ void MyVirtualWorld::draw()
     glColor3f(1.0f, 1.0f, 1.0f );
 
 
-    replicate->draw();
-
+//    replicate->draw();
+    lathe->draw();
 
 
 //glColor3f(0.0f, 0.0f, 1.0f );

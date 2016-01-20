@@ -39,6 +39,7 @@
 #include "utilities/Extrusion.hpp"
 #include "utilities/Loft.hpp"
 #include "utilities/Replicate.hpp"
+#include "utilities/Lathe.hpp"
 #include <string>
 #include <vector>
 
@@ -117,6 +118,8 @@ namespace CGLab01 {
         Loft *loft;
 
         Replicate *replicate;
+        Lathe *lathe;
+
 
         vector<vec3> pts, ptsTransformed,points3d;
 
@@ -188,8 +191,13 @@ namespace CGLab01 {
             extrude = new Extrusion(points);
             extrude->setDepth(8);
             loft = new Loft(points, points3d);
-
-
+            vector<vec2> lpoints = {
+                {{ 4, 7 }},
+                {{ 5, 5 }},
+                {{ 9, 0 }},
+                {{ 8, -5 }},
+            };
+            lathe = new Lathe(lpoints);
 
 
 
