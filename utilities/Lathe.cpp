@@ -33,7 +33,6 @@ void Lathe::draw()
     // connect with quads
     for (int i = 0; i < lathePoints.size() - 1; i++) {
         glBegin(GL_QUADS);
-        glColor3f(1.0, 1.0, 0.0);
         for (int j = 0; j < lathePoints[i].size() - 1; j++) {
             glVertex3fv(&lathePoints[i+1][j][0]);
             glVertex3fv(&lathePoints[i+1][j+1][0]);
@@ -45,7 +44,6 @@ void Lathe::draw()
 
     // draw top cap:
     glBegin(GL_TRIANGLES);
-    glColor3f(1.0, 1.0, 0.0);
     for (int j = 0; j < lathePoints[0].size() - 1; j++) {
         glVertex3f(0, lathePoints[0][0][1], 0);
         glVertex3fv(&lathePoints[0][j][0]);
@@ -56,7 +54,6 @@ void Lathe::draw()
     // draw bottom cap:
     int fin = lathePoints.size() - 1;
     glBegin(GL_TRIANGLES);
-    glColor3f(1.0, 1.0, 0.0);
     for (int j = 0; j < lathePoints[fin].size() - 1; j++) {
         glVertex3fv(&lathePoints[fin][j+1][0]);
         glVertex3fv(&lathePoints[fin][j][0]);
