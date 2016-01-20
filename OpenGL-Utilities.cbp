@@ -14,6 +14,7 @@
 				<Option projectResourceIncludeDirsRelation="1" />
 				<Compiler>
 					<Add directory="include" />
+					<Add directory="utilities" />
 				</Compiler>
 			</Target>
 		</Build>
@@ -40,6 +41,8 @@
 		<Unit filename="utilities/Drawable.hpp" />
 		<Unit filename="utilities/Extrusion.cpp" />
 		<Unit filename="utilities/Extrusion.hpp" />
+		<Unit filename="utilities/Lathe.cpp" />
+		<Unit filename="utilities/Lathe.hpp" />
 		<Unit filename="utilities/Loft.cpp" />
 		<Unit filename="utilities/Loft.hpp" />
 		<Unit filename="utilities/Mesh.cpp" />
