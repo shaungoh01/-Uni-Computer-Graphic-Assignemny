@@ -1,10 +1,10 @@
 #include "Lathe.hpp"
 #include "GL/gl.h"
 
-Lathe::Lathe(std::vector<vec2> points)
+Lathe::Lathe(std::vector<vec2> points, int segments)
 {
     for (auto &p : points) {
-        lathePoints.push_back(getCircle(p[0], 8, p[1]));
+        lathePoints.push_back(getCircle(p[0], segments, p[1]));
     }
 }
 

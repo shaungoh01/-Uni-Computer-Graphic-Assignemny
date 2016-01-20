@@ -192,12 +192,22 @@ namespace CGLab01 {
             extrude->setDepth(8);
             loft = new Loft(points, points3d);
             vector<vec2> lpoints = {
-                {{ 4, 7 }},
-                {{ 5, 5 }},
-                {{ 9, 0 }},
-                {{ 8, -5 }},
+                {{ 5, 48 }},
+                {{ 5, 43 }},
+                {{ 6, 39 }},
+                {{ 5, 36 }},
+                {{ 6, 34 }},
+                {{ 7, 32 }},
+                {{ 6, 30 }},
+                {{ 6, 22 }},
+                {{ 7, 17 }},
+                {{ 10, 13 }},
+                {{ 12, 9 }},
+                {{ 10, 4 }},
+                {{ 7, 1 }},
+                {{ 5, 0 }},
             };
-            lathe = new Lathe(lpoints);
+            lathe = new Lathe(lpoints, 22);
 
 
 

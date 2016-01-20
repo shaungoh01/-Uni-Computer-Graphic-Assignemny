@@ -7,7 +7,7 @@
 class Lathe : public Drawable
 {
     public:
-        Lathe(std::vector<vec2> points);
+        Lathe(std::vector<vec2> points, int segments);
         virtual ~Lathe();
         void draw() override;
 
