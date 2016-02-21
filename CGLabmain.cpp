@@ -90,13 +90,13 @@
 //Ideally, you should include only the files that you wish
 //  to use, however, all of them are included here just for
 //  convinience.
-#include "CGLab01.hpp"
+#include "Main.hpp"
 
 
 //IMPORTANT:
 //  Change the namespace scope below corresponding to
 //  to the lab number which you wish to use.
-using CGLab01::MyVirtualWorld;
+using Main::MyVirtualWorld;
 
 MyVirtualWorld myvirtualworld;
 

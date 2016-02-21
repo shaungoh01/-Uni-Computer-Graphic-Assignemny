@@ -118,6 +118,7 @@ namespace CGLab01 {
         Loft *loft;
 
         Replicate *replicate;
+        Replicate *replicate1;
         Lathe *lathe;
 
 
@@ -167,14 +168,15 @@ namespace CGLab01 {
                 {{  20.0f, -7.0f,5.0f }}
             };
 
-            auto circle = getCircle(2, 10);
+            auto circle = getCircle(0.5, 30);
             for (auto &v : circle) points.push_back({{ v[0], v[2] }});
 
             //spring:
-            points3d = generateSpline(-50, 50, 50,
-                                      [](float z)->float { return sin(z/2.0) * 15; },
-                                      [](float x)->float { return cos(x/2.0) * 15; },
-                                      [](float y)->float { return y; });
+            points3d = generateSpline(0, 13, 8,
+                                      [](float z)->float { return sin(z/2.0
+                                                                      ) * 20; },
+                                      [](float x)->float { return cos(x/2.0) * 20; },
+                                      [](float y)->float { return 0; });
             // heart:
             /*
             points3d = generateSpline(-50, 50, 150,
@@ -189,7 +191,7 @@ namespace CGLab01 {
             */
 
             extrude = new Extrusion(points);
-            extrude->setDepth(8);
+            extrude->setDepth(10);
             loft = new Loft(points, points3d);
             vector<vec2> lpoints = {
                 {{ 5, 48 }},
@@ -202,10 +204,10 @@ namespace CGLab01 {
                 {{ 6, 22 }},
                 {{ 7, 17 }},
                 {{ 10, 13 }},
-                {{ 12, 9 }},
-                {{ 10, 4 }},
-                {{ 7, 1 }},
-                {{ 5, 0 }},
+                {{ 11, 9 }},
+                {{ 12, 4 }},
+                {{ 13, 1 }},
+                {{ 15, 0 }},
             };
             lathe = new Lathe(lpoints, 22);
 
@@ -217,7 +219,7 @@ namespace CGLab01 {
             deer = new Mesh("data/deer.obj");
             deer->setFlatColor({{.8, .2, .8}});
             deer->setTranslateY(-5.5f);
-            deer->setRotateZ(-90);
+            //deer->setRotateZ(-90);
             deer->setScale(0.5f);
 
             elephant = new Mesh("data/elephant-triangulated.obj");
@@ -226,6 +228,7 @@ namespace CGLab01 {
             elephant->setRotateY(-45.0f);
 
             replicate = new Replicate(points3d,deer);
+            replicate1 = new Replicate(points3d,extrude);
 
             pts = getCircle(8, 7);
 

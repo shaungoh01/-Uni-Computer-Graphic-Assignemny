@@ -60,7 +60,7 @@ void Replicate::draw()
                 degree = radian * (180.0/3.14159265);
 
                 glTranslatef(plottedPoints[i][0], plottedPoints[i][1],plottedPoints[i][2]);
-                glRotatef(degree,axis[0],axis[1],axis[2]);
+                //glRotatef(degree,axis[0],axis[1],axis[2]);
                 drawable->draw();
             glPopMatrix();
         }
