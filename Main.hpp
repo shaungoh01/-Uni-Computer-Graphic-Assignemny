@@ -79,6 +79,7 @@ glEnable(GL_CULL_FACE);
 
         mymovingbb8.tickTime(elapseTime);
         ferry.tickTime();
+        maa.tickTime();
     }
     //for any one-time only initialization of the
     // virtual world before any rendering takes place

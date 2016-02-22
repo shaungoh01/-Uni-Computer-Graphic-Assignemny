@@ -4,6 +4,11 @@
 #include "MerryGo.hpp"
 #include <vector>
 
+MerryGo::MerryGo(){
+    tickMove = 0;
+    ticktick = 0;
+}
+
 void MerryGo::draw(){
     glDisable(GL_CULL_FACE);
          //Quadric Object
@@ -23,7 +28,7 @@ void MerryGo::draw(){
     for(float i= 0; i<360 ; i+=45.0){
         glPushMatrix();
             glColor3f(1.0f, 1.0f, 1.0f );
-            glRotatef(i, 0.0f, 1.0f, 0.0f);
+            glRotatef(i+tickMove, 0.0f, 1.0f, 0.0f);
             glTranslatef(0.0f, 30.0f, 0.0f);
             gluCylinder(pObj, 2.0f, 2.0f, 52.0f, 24, 72);
             glTranslatef(0.0f, 2.0f, 50.0f);
@@ -32,7 +37,7 @@ void MerryGo::draw(){
         glPopMatrix();
 
         glPushMatrix();
-            glRotatef(i, 0.0f, 1.0f, 0.0f);
+            glRotatef(i+tickMove, 0.0f, 1.0f, 0.0f);
             glTranslatef(-50.0f, 0.0f, 0.0f);
             jet->draw();
         glPopMatrix();
@@ -42,3 +47,11 @@ void MerryGo::draw(){
     gluDeleteQuadric(pObj);
     glEnable(GL_CULL_FACE);
     }
+
+void MerryGo::tickTime(){
+    ticktick++;
+    if(ticktick == 30){
+        ticktick =0;
+        tickMove+= 11.25;
+    }
+}

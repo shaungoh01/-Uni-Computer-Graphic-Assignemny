@@ -13,9 +13,13 @@ class MerryGo : Drawable
 {
     public:
     //create an instance of the MyUmbrella class
+    MerryGo();
     Rocket rocket;
+    float ticktick;
+    float tickMove;
     Mesh *jet;
     void draw();
+    void tickTime();
 };
 
 #endif
