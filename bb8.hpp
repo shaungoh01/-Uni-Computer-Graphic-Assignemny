@@ -8,6 +8,7 @@ class MyMovingBB8
 public:
     MyMovingBB8();
     ~MyMovingBB8();
+    void draw1();
     void draw();
     void drawfence();
     void tickTime(long int elapseTime);

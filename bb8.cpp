@@ -23,10 +23,9 @@ MyMovingBB8::~MyMovingBB8()
 {
     gluDeleteQuadric(pObj);
 }
-void MyMovingBB8::draw()
+void MyMovingBB8::draw1()
 {
-    glTranslatef(posx, posy, posz);
-    glRotatef(timetick, 0.0f, 1.0f, 0.0f);
+
 
     glPushMatrix();
 
@@ -79,14 +78,24 @@ void MyMovingBB8::drawfence()
     gluCylinder(pObj, 25.0f, 25.0f, 5, 26, 5);
     glPopMatrix();
 }
+void MyMovingBB8::draw()
+{
+    glPushMatrix();
+        glTranslatef(posx, posy, posz);
+        glRotatef(timetick, 0.0f, 1.0f, 0.0f);
+        draw1();
+    glPopMatrix();
+}
 
 void MyMovingBB8::Movebb8()
 {
     glPushMatrix();
     //glTranslatef(posx, posy, posz);
     //glRotatef(roty, 0.0f, 1.0f, 0.0f);
-    draw();
-    glPushMatrix();
+    //glTranslatef(posx, posy, posz);
+    //glRotatef(timetick, 0.0f, 1.0f, 0.0f);
+    //draw1();
+    glPopMatrix();
 }
 
 //elapsetime in milisec

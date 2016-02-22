@@ -43,10 +43,16 @@ class MyVirtualWorld
 
         mymovingbb8.drawfence();
         mymovingbb8.draw();
-    glTranslatef(150.0f, -50.0f, 0.0f);
-    maa.draw();
-    glTranslatef(-300.0f, 50.0f, 0.0f);
-    ferry.draw();
+
+    glPushMatrix();
+        glTranslatef(150.0f, 0.0f, 0.0f);
+        maa.draw();
+    glPopMatrix();
+
+    glPushMatrix();
+        glTranslatef(-100.0f, 0.0f, 0.0f);
+        ferry.draw();
+    glPopMatrix();
     /*
 for(float i= 0; i< 360 ; i+=45.0){
     glPushMatrix();
