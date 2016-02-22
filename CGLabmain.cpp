@@ -146,12 +146,12 @@ void myKeyboardFunc(unsigned char key, int x, int y)
  xinc = yinc = zinc = 0.0;
  switch (key)
  {
-    case 'a': case 'A': xinc = -setting.posInc;  break;
-    case 'd': case 'D': xinc =  setting.posInc;  break;
+    case 'a': case 'A': xinc = setting.posInc;  break;
+    case 'd': case 'D': xinc =  -setting.posInc;  break;
     case 'q': case 'Q': yinc = -setting.posInc;  break;
     case 'e': case 'E': yinc =  setting.posInc;  break;
-    case 'w': case 'W': zinc = -setting.posInc;  break;
-    case 's': case 'S': zinc =  setting.posInc;  break;
+    case 'w': case 'W': zinc = setting.posInc;  break;
+    case 's': case 'S': zinc = -setting.posInc;  break;
 
     case 27  : exit(1); break;
  }
