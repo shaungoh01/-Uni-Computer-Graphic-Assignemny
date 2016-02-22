@@ -10,6 +10,7 @@
 #include "utilities/Replicate.hpp"
 #include "MerryGo.hpp"
 #include "FerryW.hpp"
+#include "bb8.hpp"
 #include "GL/gl.h"
 #include <string>
 #include <vector>//------------------------------------
@@ -28,6 +29,8 @@ class MyVirtualWorld
     //create an instance of the MyUmbrella class
     MerryGo maa;
     FerryW ferry;
+    MyMovingBB8 mymovingbb8;
+    long int timeold, timenew, elapseTime;
 
     void draw(){
         glDisable(GL_CULL_FACE);
@@ -38,9 +41,12 @@ class MyVirtualWorld
     gluQuadricDrawStyle(pObj, GLU_FILL);
     gluQuadricNormals(pObj, GLU_FLAT);
 
-    ferry.draw();
+        mymovingbb8.drawfence();
+        mymovingbb8.draw();
     glTranslatef(150.0f, -50.0f, 0.0f);
     maa.draw();
+    glTranslatef(-300.0f, 50.0f, 0.0f);
+    ferry.draw();
     /*
 for(float i= 0; i< 360 ; i+=45.0){
     glPushMatrix();
@@ -61,13 +67,18 @@ glEnable(GL_CULL_FACE);
     }
     void tickTime()
     {
-        //do nothing, reserved for doing animation
+        timenew = glutGet(GLUT_ELAPSED_TIME);
+        elapseTime = timenew - timeold;
+        timeold = timenew;
+
+        mymovingbb8.tickTime(elapseTime);
     }
     //for any one-time only initialization of the
     // virtual world before any rendering takes place
     // BUT after OpenGL has been initialized
     void init()
     {
+        timeold = glutGet(GLUT_ELAPSED_TIME);
     };
 }; //end of namespace CGLab06
 };
