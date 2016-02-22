@@ -11,11 +11,16 @@
 class FerryW : Drawable
 {
 public:
+    FerryW();
+    //~FerryW();
     Mesh *deathStar;
+    float ticktick;
+    float tickMove;
     void drawDeath();
     void drawPole(float i);
+    void drawMoving();
     void draw();
-   // void tickTime(long int elapseTime)
+    void tickTime();
 
 };
 

@@ -4,6 +4,11 @@
 #include "FerryW.hpp"
 #include <vector>
 
+FerryW::FerryW(){
+    tickMove = 0;
+    ticktick = 0;
+}
+
 void FerryW::drawDeath(){
         glDisable(GL_CULL_FACE);
                  //Quadric Object
@@ -12,8 +17,6 @@ void FerryW::drawDeath(){
         pObj = gluNewQuadric();
         gluQuadricDrawStyle(pObj, GLU_FILL);
         gluQuadricNormals(pObj, GLU_FLAT);
-
-
 
         glColor3f(0.7f, 0.7f, 0.7f);
 
@@ -81,24 +84,29 @@ void FerryW::drawPole(float i){
             glEnable(GL_CULL_FACE);
 }
 
-void FerryW::draw(){
-        glTranslatef(0.0f, 50.0f, 0.0f);
-        drawDeath();
+void FerryW::drawMoving(){
         for(float i= 0; i<360 ; i+=45.0){
                 glPushMatrix();
-                    glRotatef(i, 0.0f, 0.0f, 1.0f);
+                    glRotatef(i+tickMove, 0.0f, 0.0f, 1.0f);
                     drawPole(40.0f);
                     glTranslatef(0.0f, 40.0f, 0.0f);
-                    glRotatef(-i, 0.0f, 0.0f, 1.0f);
+                    glRotatef(-(i+tickMove), 0.0f, 0.0f, 1.0f);
                     drawDeath();
                 glPopMatrix();
                 glPushMatrix();
-                    glRotatef(i, 0.0f, 0.0f, 1.0f);
+                    glRotatef(i+tickMove, 0.0f, 0.0f, 1.0f);
                     glTranslatef(0.0f, 40.0f, 0.0f);
-                    glRotatef(-i, 0.0f, 0.0f, 1.0f);
+                    glRotatef(-(i+tickMove), 0.0f, 0.0f, 1.0f);
                     drawDeath();
                 glPopMatrix();
         }
+}
+
+void FerryW::draw(){
+        glTranslatef(0.0f, 50.0f, 0.0f);
+        drawDeath();
+
+                drawMoving();
 
                 glPushMatrix();
                     glRotatef(25, 0.0f, 0.0f, 1.0f);
@@ -136,4 +144,12 @@ void FerryW::draw(){
                     glVertex3f(50.0f , -50.0f , 30.0f);
                     glEnable(GL_CULL_FACE);
                  glEnd();
+}
+
+void FerryW::tickTime(){
+    ticktick++;
+    if(ticktick == 30){
+        ticktick =0;
+        tickMove+= 11.25;
     }
+}
