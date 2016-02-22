@@ -19,18 +19,27 @@ void MyVirtualWorld::draw(){
     gluQuadricDrawStyle(pObj, GLU_FILL);
     gluQuadricNormals(pObj, GLU_FLAT);
 
+    glPushMatrix();
+        glTranslatef(0.0f, 0.0f, -100.0f);
         mymovingbb8.drawfence();
         mymovingbb8.draw();
+    glPopMatrix();
 
     glPushMatrix();
-        glTranslatef(150.0f, 0.0f, 0.0f);
+        glTranslatef(150.0f, 0.0f, -100.0f);
         maa.draw();
     glPopMatrix();
 
     glPushMatrix();
-        glTranslatef(-100.0f, 0.0f, 0.0f);
+        glTranslatef(-100.0f, 0.0f, -100.0f);
         ferry.draw();
     glPopMatrix();
+
+    glPushMatrix();
+        myspaceship.Movespaceship();
+        myspaceship.drawfence();
+    glPopMatrix();
+        //drawFloor();
         /*
     for(float i= 0; i< 360 ; i+=45.0){
         glPushMatrix();
@@ -56,6 +65,7 @@ void MyVirtualWorld::tickTime()
         timeold = timenew;
 
         mymovingbb8.tickTime(elapseTime);
+        myspaceship.tickTime(elapseTime);
         ferry.tickTime();
         maa.tickTime();
     }

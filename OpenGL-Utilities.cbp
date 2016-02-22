@@ -48,6 +48,8 @@
 		<Unit filename="Rocket.hpp" />
 		<Unit filename="bb8.cpp" />
 		<Unit filename="bb8.hpp" />
+		<Unit filename="spaceship.cpp" />
+		<Unit filename="spaceship.hpp" />
 		<Unit filename="utilities/Drawable.hpp" />
 		<Unit filename="utilities/Extrusion.cpp" />
 		<Unit filename="utilities/Extrusion.hpp" />

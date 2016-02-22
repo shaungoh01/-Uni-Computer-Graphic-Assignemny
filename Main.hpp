@@ -10,6 +10,7 @@
 #include "utilities/Replicate.hpp"
 #include "MerryGo.hpp"
 #include "FerryW.hpp"
+#include "spaceship.hpp"
 #include "bb8.hpp"
 #include "GL/gl.h"
 #include <string>
@@ -27,6 +28,7 @@ class MyVirtualWorld
 {
     public:
     //create an instance of the MyUmbrella class
+    MySpaceShip myspaceship;
     MerryGo maa;
     FerryW ferry;
     MyMovingBB8 mymovingbb8;

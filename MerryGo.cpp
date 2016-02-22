@@ -39,6 +39,7 @@ void MerryGo::draw(){
         glPushMatrix();
             glRotatef(i+tickMove, 0.0f, 1.0f, 0.0f);
             glTranslatef(-50.0f, 0.0f, 0.0f);
+            jet->setFlatColor({{rand()%45*0.1, rand()%45*0.1,rand()%45 * 0.01}});
             jet->draw();
         glPopMatrix();
     }
