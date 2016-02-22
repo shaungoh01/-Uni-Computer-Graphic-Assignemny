@@ -9,6 +9,7 @@
 #include "utilities/Lathe.hpp"
 #include "utilities/Replicate.hpp"
 #include "MerryGo.hpp"
+#include "FerryW.hpp"
 #include "GL/gl.h"
 #include <string>
 #include <vector>//------------------------------------
@@ -26,6 +27,7 @@ class MyVirtualWorld
     public:
     //create an instance of the MyUmbrella class
     MerryGo maa;
+    FerryW ferry;
 
     void draw(){
         glDisable(GL_CULL_FACE);
@@ -36,7 +38,10 @@ class MyVirtualWorld
     gluQuadricDrawStyle(pObj, GLU_FILL);
     gluQuadricNormals(pObj, GLU_FLAT);
 
+    ferry.draw();
+    glTranslatef(150.0f, -50.0f, 0.0f);
     maa.draw();
+    /*
 for(float i= 0; i< 360 ; i+=45.0){
     glPushMatrix();
     glRotatef(i, 1.0f, 0.0f, 0.0f);
@@ -45,10 +50,11 @@ for(float i= 0; i< 360 ; i+=45.0){
 
     glTranslatef(0.0f, 47.0f, 0.0f);
     glRotatef(-90, 1.0f, 0.0f, 0.0f);
-    glRotatef(-45, 0.0f, 1.0f, 0.0f);
+    glRotatef(-40, 0.0f, 1.0f, 0.0f);
     gluCylinder(pObj, 2.0f, 2.0f, 100.0f, 24, 72);
     glPopMatrix();
 }
+*/
 //free the quadric object
 gluDeleteQuadric(pObj);
 glEnable(GL_CULL_FACE);

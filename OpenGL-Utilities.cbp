@@ -38,6 +38,14 @@
 		<Unit filename="CGLabmain.hpp">
 			<Option weight="49" />
 		</Unit>
+		<Unit filename="FerryW.cpp" />
+		<Unit filename="FerryW.hpp" />
+		<Unit filename="Main.cpp" />
+		<Unit filename="Main.hpp" />
+		<Unit filename="MerryGo.cpp" />
+		<Unit filename="MerryGo.hpp" />
+		<Unit filename="Rocket.cpp" />
+		<Unit filename="Rocket.hpp" />
 		<Unit filename="utilities/Drawable.hpp" />
 		<Unit filename="utilities/Extrusion.cpp" />
 		<Unit filename="utilities/Extrusion.hpp" />
